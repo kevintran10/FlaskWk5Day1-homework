@@ -1,0 +1,45 @@
+{% extends 'pokebase.html' %}
+
+{% block styles %}
+
+    <link rel="stylesheet" href="../static/styles/pokelogin.css">
+
+{% endblock %}
+
+{% block title %}
+Pokedex Finder
+{% endblock %}
+
+{% block content %}
+    <form method='POST'>
+        <div class="mb-3">
+          <label for="pkmnLabel" class="form-label">Who's that Pokemon?!</label>
+          <input type="text" class="form-control" id="pkmnLabel" name="pokemon_name">
+        </div>
+        <button type="submit" class="btn btn-primary">Take a guess!</button>
+    </form>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Ability</th>
+            <th scope="col">HP</th>
+            <th scope="col">Attack</th>
+            <th scope="col">Defense</th>
+            <th scope="col">Front Shiny Sprite</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for pokemon in data %}
+          <tr>
+            <td>{{ pokemon['name'] }}</td>
+            <td>{{ pokemon['ability'] }}</td>
+            <td>{{ pokemon['hp'] }}</td>
+            <td>{{ pokemon['attack'] }}</td>
+            <td>{{ pokemon['defense'] }}</td>
+            <td><img src="{{ pokemon['shiny_sprite_url'] }}" alt="shiny_sprite"></td>
+          </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+{% endblock %}
